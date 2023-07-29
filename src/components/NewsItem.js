@@ -5,7 +5,7 @@ export class NewsItem extends Component {
         let {title, description, imageUrl, newsUrl} = this.props;   // here i am destructuring the this.props object and pulling keys->value from this.porps as title and description
         return (
             <div className='my-3'>
-                <div className="card" style={{width: "18rem"}}>
+                <div className="card">
                     <img src={imageUrl ? imageUrl : "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"} className="card-img-top" alt="..."/>
                         <div className="card-body">
                             <h5 className="card-title">{title}</h5>

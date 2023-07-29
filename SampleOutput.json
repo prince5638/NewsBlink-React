@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
-import NewsItem from './NewsItem'
-
-export class News extends Component {
-    articles = [
+{
+    "status": "ok",
+    "totalResults": 8,
+    "articles": [
       {
         "source": {
           "id": "associated-press",
@@ -108,28 +107,4 @@ export class News extends Component {
         "content": "There have been 275,000 appointment slots booked for Penneys stores around the country this week, the retailer has said.\r\nPenney's 36 stores opened on an appointment-only basis from last Monday, with… [+577 chars]"
       }
     ]
-    constructor(){
-      super();
-      // console.log("Hello"); 
-      this.state = {
-        articles: this.articles,
-        loading: false
-      }
-    }
-    render() {
-        return (
-            <div className="container my-3">
-                <h2>NewsBlink - Top Headlines</h2>
-                <div className="row">
-                {this.state.articles.map((element)=>{
-                    return <div className="col-md-4" key={element.url}>
-                        <NewsItem title={element.title} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url} />
-                    </div>
-                })}
-                </div>
-            </div>
-        )
-    }
-}
-
-export default News
+  }

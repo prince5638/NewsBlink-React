@@ -56,17 +56,17 @@ export class News extends Component {
     this.updateNews();
   }
 
-  handelPrevClick = async () => {
-    this.setState({page: this.state.page - 1});
-    this.updateNews();
-  }
+  // handelPrevClick = async () => {
+  //   this.setState({page: this.state.page - 1});
+  //   this.updateNews();
+  // }
 
-  handelNextClick = async () => {
-    this.setState({
-      page: this.state.page + 1,
-    });
-    this.updateNews();
-  }
+  // handelNextClick = async () => {
+  //   this.setState({
+  //     page: this.state.page + 1,
+  //   });
+  //   this.updateNews();
+  // }
 
   fetchMoreData = async () => {
     this.setState({ page: this.state.page + 1 })
@@ -82,7 +82,7 @@ export class News extends Component {
   render() {
     return (
       <>
-        <h1 className="text-center" style={{ margin: "35px 0px" }}>NewsBlink - Top {this.captitalizeFirstLetter(this.props.category)} Headlines</h1>
+        <h1 className="text-center" style={{ marginTop: "90px", marginBottom: "35px"}}>NewsBlink - Top {this.captitalizeFirstLetter(this.props.category)} Headlines</h1>
         {this.state.loading && <Spinner />}
         <InfiniteScroll
           dataLength={this.state.articles.length}

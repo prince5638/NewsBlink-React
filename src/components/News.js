@@ -16,6 +16,7 @@ export class News extends Component {
     country: PropTypes.string,
     pageSize: PropTypes.number,
     category: PropTypes.string,
+    color: PropTypes.string,
   }
 
   constructor() {
@@ -27,43 +28,36 @@ export class News extends Component {
     }
   }
 
-  async componentDidMount() {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f2d2b621d2bb45f7bbb216eeef1206f7&page=1&pageSize=${this.props.pageSize}`;
-    // this.setState({loading: true});
-    let data = await fetch(url);
-    let parseData = await data.json();
-    this.setState({ articles: parseData.articles, totalResults: parseData.totalResults, loading: false });
-  }
-
-  handelPrevClick = async () => {
-
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f2d2b621d2bb45f7bbb216eeef1206f7&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
+  async updateNews()
+  {
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=028fb1c17de540418bc418d9b0f6e4d4&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({loading: true});
     let data = await fetch(url);
     let parseData = await data.json();
 
     this.setState({
-      page: this.state.page - 1,
       articles: parseData.articles,
+      totalResults: parseData.totalResults,
       loading: false
     });
   }
 
-  handelNextClick = async () => {
-    if (!(this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)))
-    {
-      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f2d2b621d2bb45f7bbb216eeef1206f7&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
-      this.setState({loading: true});
-      let data = await fetch(url);
-      let parseData = await data.json();
+  async componentDidMount() {
+    this.updateNews();
+  }
 
+  handelPrevClick = async () => {
+    this.setState({
+      page: this.state.page - 1,
+    });
+    this.updateNews();
+  }
+
+  handelNextClick = async () => {
       this.setState({
         page: this.state.page + 1,
-        articles: parseData.articles,
-        loading: false
       });
-    }
-
+      this.updateNews();
   }
 
   render() {
@@ -74,7 +68,7 @@ export class News extends Component {
         <div className="row">
           {!this.state.loading && this.state.articles.map((element) => {
             return <div className="col-md-4" key={element.url}>
-              <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} imageUrl={element.urlToImage} newsUrl={element.url} />
+              <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} source={element.source.name} date={element.publishedAt} color={this.props.color}/>
             </div>
           })}
         </div>

@@ -2,6 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## Demo
+
+
+https://github.com/prince5638/NewsBlink-React/assets/100819547/83a59870-3ae8-4781-b78c-8d1993c82bde
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
